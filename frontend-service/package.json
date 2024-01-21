@@ -1,0 +1,29 @@
+{
+  "name": "frontend-service",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vue/shared": "^3.4.13",
+    "axios": "^1.6.5",
+    "shared": "^0.2.0",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vue": "^3.3.11",
+    "vue-i18n": "^9.9.0",
+    "vue-meta-info": "^0.1.7",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
+    "fast-glob": "^3.3.2",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "vite": "^5.0.8",
+    "vite-plugin-imagemin": "^0.6.1"
+  }
+}

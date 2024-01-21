@@ -1,0 +1,662 @@
+basePath: /api
+definitions:
+  model.CopyrightLicence:
+    properties:
+      author:
+        description: 版权作者
+        type: string
+      from:
+        description: 生效开始标记
+        type: string
+      id:
+        description: 版权信息 id
+        type: string
+      to:
+        description: 生效结束标记
+        type: string
+    type: object
+  model.IcpLicence:
+    properties:
+      gmt-registry:
+        description: 登记时间
+        type: string
+      id:
+        description: 备案信息 id
+        type: string
+      "no":
+        description: 附加号码
+        type: string
+      number:
+        description: 备案号
+        type: string
+      province:
+        description: 备案省份
+        type: string
+    type: object
+  model.Result:
+    properties:
+      code:
+        description: 业务状态码
+        type: integer
+      data:
+        description: 响应数据
+      message:
+        description: 业务信息
+        type: string
+    type: object
+  model.TechStack:
+    properties:
+      icon:
+        description: 图标 svg 名称
+        type: string
+      id:
+        description: 技术栈信息 id
+        type: string
+      name:
+        description: 技术栈名称
+        type: string
+      weight:
+        description: 权重
+        type: integer
+    type: object
+host: 192.168.2.45:8085
+info:
+  contact:
+    email: pgl888999@icloud.com
+    name: anonymous
+    url: https://anonymous.net.cn
+  description: Anonymous Public Space 公共指引服务后端接口
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://anonymous.net.cn
+  title: Public System 后端接口
+  version: "1.0"
+paths:
+  /v1/logout:
+    delete:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 管理员登出
+      tags:
+      - 管理员信息管理接口
+  /v1/manager/code-place/add:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 添加代码空间信息
+      tags:
+      - 代码空间信息管理接口
+  /v1/manager/code-place/delete/{id-list}:
+    delete:
+      parameters:
+      - collectionFormat: csv
+        description: 待删除项id列表
+        in: path
+        items:
+          type: string
+        name: id-list
+        required: true
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 删除代码空间信息
+      tags:
+      - 代码空间信息管理接口
+  /v1/manager/code-place/modified:
+    put:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 修改代码空间信息
+      tags:
+      - 代码空间信息管理接口
+  /v1/manager/code-place/query/{no}/{size}:
+    get:
+      parameters:
+      - description: 分页页码
+        in: path
+        name: "no"
+        required: true
+        type: integer
+      - description: 分页大小
+        in: path
+        name: size
+        required: true
+        type: integer
+      - description: 搜索关键字
+        in: query
+        name: keyword
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 查询代码空间信息
+      tags:
+      - 代码空间信息管理接口
+  /v1/manager/contact-me/add:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 添加联系方式信息
+      tags:
+      - 联系方式信息管理接口
+  /v1/manager/contact-me/delete/{id-list}:
+    delete:
+      parameters:
+      - collectionFormat: csv
+        description: 待删除项id列表
+        in: path
+        items:
+          type: string
+        name: id-list
+        required: true
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 删除联系方式信息
+      tags:
+      - 联系方式信息管理接口
+  /v1/manager/contact-me/modified:
+    put:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 修改联系方式信息
+      tags:
+      - 联系方式信息管理接口
+  /v1/manager/contact-me/query/{no}/{size}:
+    get:
+      parameters:
+      - description: 分页页码
+        in: path
+        name: "no"
+        required: true
+        type: integer
+      - description: 分页大小
+        in: path
+        name: size
+        required: true
+        type: integer
+      - description: 搜索关键字
+        in: query
+        name: keyword
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 分页查询联系方式信息
+      tags:
+      - 联系方式信息管理接口
+  /v1/manager/copyright/delete:
+    delete:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 删除版权信息
+      tags:
+      - 版权信息管理接口
+  /v1/manager/copyright/edit:
+    post:
+      parameters:
+      - description: 版权对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.CopyrightLicence'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 设置版权信息
+      tags:
+      - 版权信息管理接口
+  /v1/manager/icp/delete:
+    delete:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 删除 icp 备案信息
+      tags:
+      - 备案信息管理接口
+  /v1/manager/icp/edit:
+    post:
+      parameters:
+      - description: 版权对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.IcpLicence'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 设置 icp 备案信息
+      tags:
+      - 备案信息管理接口
+  /v1/manager/mine/password:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 管理员重置密码
+      tags:
+      - 管理员信息管理接口
+  /v1/manager/site-entrance/add:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 添加站点入口信息
+      tags:
+      - 站点入口信息管理接口
+  /v1/manager/site-entrance/delete/{id-list}:
+    delete:
+      parameters:
+      - collectionFormat: csv
+        description: 待删除项id列表
+        in: path
+        items:
+          type: string
+        name: id-list
+        required: true
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 删除站点信息
+      tags:
+      - 站点入口信息管理接口
+  /v1/manager/site-entrance/modified:
+    put:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 修改站点信息
+      tags:
+      - 站点入口信息管理接口
+  /v1/manager/site-entrance/query/{no}/{size}:
+    get:
+      parameters:
+      - description: 分页页码
+        in: path
+        name: "no"
+        required: true
+        type: integer
+      - description: 分页大小
+        in: path
+        name: size
+        required: true
+        type: integer
+      - description: 搜索关键字
+        in: query
+        name: keyword
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 查询站点信息
+      tags:
+      - 站点入口信息管理接口
+  /v1/manager/tech-stack/add:
+    post:
+      parameters:
+      - description: 技术栈对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.TechStack'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 添加技术栈信息
+      tags:
+      - 技术栈信息管理接口
+  /v1/manager/tech-stack/delete/{id-list}:
+    delete:
+      parameters:
+      - collectionFormat: csv
+        description: 待删除项id列表
+        in: path
+        items:
+          type: string
+        name: id-list
+        required: true
+        type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 移除技术栈信息
+      tags:
+      - 技术栈信息管理接口
+  /v1/manager/tech-stack/modified:
+    put:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 修改技术栈信息
+      tags:
+      - 技术栈信息管理接口
+  /v1/manager/tech-stack/query/{no}/{size}:
+    get:
+      parameters:
+      - description: 分页页码
+        in: path
+        name: "no"
+        required: true
+        type: integer
+      - description: 分页大小
+        in: path
+        name: size
+        required: true
+        type: integer
+      - description: 搜索关键字
+        in: query
+        name: keyword
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 分页查询技术栈信息
+      tags:
+      - 技术栈信息管理接口
+  /v1/public/code-place/list/{limit}:
+    get:
+      parameters:
+      - description: Top [limit] 条记录
+        in: path
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 获取代码空间展示信息
+      tags:
+      - 公共信息获取接口
+  /v1/public/contact-me/list/{limit}:
+    get:
+      parameters:
+      - description: Top [limit] 条记录
+        in: path
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 获取联系方式展示信息
+      tags:
+      - 公共信息获取接口
+  /v1/public/copyright/info:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 获取版权展示信息
+      tags:
+      - 公共信息获取接口
+  /v1/public/icp/info:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 获取 icp 备案展示信息
+      tags:
+      - 公共信息获取接口
+  /v1/public/site-entrance/list/{limit}:
+    get:
+      parameters:
+      - description: Top [limit] 条记录
+        in: path
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 获取站点入口展示信息
+      tags:
+      - 公共信息获取接口
+  /v1/public/tech-stack/list/{limit}:
+    get:
+      parameters:
+      - description: Top [limit] 条记录
+        in: path
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/model.Result'
+        "500":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/model.Result'
+      summary: 获取技术栈展示信息
+      tags:
+      - 公共信息获取接口
+swagger: "2.0"

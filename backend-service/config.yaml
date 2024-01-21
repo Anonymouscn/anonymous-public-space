@@ -1,0 +1,28 @@
+# 服务器配置
+server:
+  port: 8085
+# 数据库配置
+db:
+  mongo:
+    db: public-system-db
+    host: 192.168.2.41
+    port: 27017
+    username: public-system-backend
+    password: public-system-backend
+    pool:
+      min: 4
+      max: 40
+# 缓存配置
+cache:
+  # 本地缓存配置
+  local:
+    gin-cache:
+      enable: true
+      memory-expire: 2m
+      cache-expire: 5s
+  # 共享缓存配置
+  share:
+    redis:
+      enable: true
+      host: 127.0.0.1
+      port: 6379
