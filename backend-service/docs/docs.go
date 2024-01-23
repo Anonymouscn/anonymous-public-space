@@ -58,6 +58,16 @@ const docTemplate = `{
                     "代码空间信息管理接口"
                 ],
                 "summary": "添加代码空间信息",
+                "parameters": [
+                    {
+                        "description": "代码空间对象信息",
+                        "name": "copyright",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.Contact"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "请求成功",
@@ -121,6 +131,16 @@ const docTemplate = `{
                     "代码空间信息管理接口"
                 ],
                 "summary": "修改代码空间信息",
+                "parameters": [
+                    {
+                        "description": "代码空间对象信息",
+                        "name": "copyright",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.Contact"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "请求成功",
@@ -193,6 +213,16 @@ const docTemplate = `{
                     "联系方式信息管理接口"
                 ],
                 "summary": "添加联系方式信息",
+                "parameters": [
+                    {
+                        "description": "联系方式对象信息",
+                        "name": "copyright",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.Contact"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "请求成功",
@@ -256,6 +286,16 @@ const docTemplate = `{
                     "联系方式信息管理接口"
                 ],
                 "summary": "修改联系方式信息",
+                "parameters": [
+                    {
+                        "description": "联系方式对象信息",
+                        "name": "copyright",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.Contact"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "请求成功",
@@ -355,7 +395,7 @@ const docTemplate = `{
                 "summary": "设置版权信息",
                 "parameters": [
                     {
-                        "description": "版权对象信息",
+                        "description": "新增版权信息",
                         "name": "copyright",
                         "in": "body",
                         "schema": {
@@ -415,7 +455,7 @@ const docTemplate = `{
                 "summary": "设置 icp 备案信息",
                 "parameters": [
                     {
-                        "description": "版权对象信息",
+                        "description": "新增备案信息",
                         "name": "copyright",
                         "in": "body",
                         "schema": {
@@ -473,6 +513,16 @@ const docTemplate = `{
                     "站点入口信息管理接口"
                 ],
                 "summary": "添加站点入口信息",
+                "parameters": [
+                    {
+                        "description": "站点入口对象信息",
+                        "name": "copyright",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.SiteEntrance"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "请求成功",
@@ -536,6 +586,16 @@ const docTemplate = `{
                     "站点入口信息管理接口"
                 ],
                 "summary": "修改站点信息",
+                "parameters": [
+                    {
+                        "description": "站点入口对象信息",
+                        "name": "copyright",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.SiteEntrance"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "请求成功",
@@ -642,7 +702,7 @@ const docTemplate = `{
                 "tags": [
                     "技术栈信息管理接口"
                 ],
-                "summary": "移除技术栈信息",
+                "summary": "删除技术栈信息",
                 "parameters": [
                     {
                         "type": "array",
@@ -681,6 +741,16 @@ const docTemplate = `{
                     "技术栈信息管理接口"
                 ],
                 "summary": "修改技术栈信息",
+                "parameters": [
+                    {
+                        "description": "技术栈对象信息",
+                        "name": "copyright",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/model.TechStack"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "请求成功",
@@ -932,6 +1002,39 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "model.Contact": {
+            "type": "object",
+            "properties": {
+                "icon": {
+                    "description": "联系方式图标名称",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "联系方式信息 id",
+                    "type": "string"
+                },
+                "image": {
+                    "description": "二维码图片 url (可选)",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "联系方式名称",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "展示类型 [0: 未定义, 1: url, 2: 二维码]",
+                    "type": "integer"
+                },
+                "url": {
+                    "description": "跳转 url (可选)",
+                    "type": "string"
+                },
+                "weight": {
+                    "description": "权重",
+                    "type": "integer"
+                }
+            }
+        },
         "model.CopyrightLicence": {
             "type": "object",
             "properties": {
@@ -991,6 +1094,27 @@ const docTemplate = `{
                 "message": {
                     "description": "业务信息",
                     "type": "string"
+                }
+            }
+        },
+        "model.SiteEntrance": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "站点信息 id",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "站点名称",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "站点 url",
+                    "type": "string"
+                },
+                "weight": {
+                    "description": "权重",
+                    "type": "integer"
                 }
             }
         },

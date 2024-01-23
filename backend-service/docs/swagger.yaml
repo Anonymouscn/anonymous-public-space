@@ -1,5 +1,29 @@
 basePath: /api
 definitions:
+  model.Contact:
+    properties:
+      icon:
+        description: 联系方式图标名称
+        type: string
+      id:
+        description: 联系方式信息 id
+        type: string
+      image:
+        description: 二维码图片 url (可选)
+        type: string
+      name:
+        description: 联系方式名称
+        type: string
+      type:
+        description: '展示类型 [0: 未定义, 1: url, 2: 二维码]'
+        type: integer
+      url:
+        description: 跳转 url (可选)
+        type: string
+      weight:
+        description: 权重
+        type: integer
+    type: object
   model.CopyrightLicence:
     properties:
       author:
@@ -43,6 +67,21 @@ definitions:
       message:
         description: 业务信息
         type: string
+    type: object
+  model.SiteEntrance:
+    properties:
+      id:
+        description: 站点信息 id
+        type: string
+      name:
+        description: 站点名称
+        type: string
+      url:
+        description: 站点 url
+        type: string
+      weight:
+        description: 权重
+        type: integer
     type: object
   model.TechStack:
     properties:
@@ -91,6 +130,12 @@ paths:
       - 管理员信息管理接口
   /v1/manager/code-place/add:
     post:
+      parameters:
+      - description: 代码空间对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.Contact'
       produces:
       - application/json
       responses:
@@ -132,6 +177,12 @@ paths:
       - 代码空间信息管理接口
   /v1/manager/code-place/modified:
     put:
+      parameters:
+      - description: 代码空间对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.Contact'
       produces:
       - application/json
       responses:
@@ -179,6 +230,12 @@ paths:
       - 代码空间信息管理接口
   /v1/manager/contact-me/add:
     post:
+      parameters:
+      - description: 联系方式对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.Contact'
       produces:
       - application/json
       responses:
@@ -220,6 +277,12 @@ paths:
       - 联系方式信息管理接口
   /v1/manager/contact-me/modified:
     put:
+      parameters:
+      - description: 联系方式对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.Contact'
       produces:
       - application/json
       responses:
@@ -284,7 +347,7 @@ paths:
   /v1/manager/copyright/edit:
     post:
       parameters:
-      - description: 版权对象信息
+      - description: 新增版权信息
         in: body
         name: copyright
         schema:
@@ -322,7 +385,7 @@ paths:
   /v1/manager/icp/edit:
     post:
       parameters:
-      - description: 版权对象信息
+      - description: 新增备案信息
         in: body
         name: copyright
         schema:
@@ -359,6 +422,12 @@ paths:
       - 管理员信息管理接口
   /v1/manager/site-entrance/add:
     post:
+      parameters:
+      - description: 站点入口对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.SiteEntrance'
       produces:
       - application/json
       responses:
@@ -400,6 +469,12 @@ paths:
       - 站点入口信息管理接口
   /v1/manager/site-entrance/modified:
     put:
+      parameters:
+      - description: 站点入口对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.SiteEntrance'
       produces:
       - application/json
       responses:
@@ -489,11 +564,17 @@ paths:
           description: 请求失败
           schema:
             $ref: '#/definitions/model.Result'
-      summary: 移除技术栈信息
+      summary: 删除技术栈信息
       tags:
       - 技术栈信息管理接口
   /v1/manager/tech-stack/modified:
     put:
+      parameters:
+      - description: 技术栈对象信息
+        in: body
+        name: copyright
+        schema:
+          $ref: '#/definitions/model.TechStack'
       produces:
       - application/json
       responses:
