@@ -43,7 +43,7 @@ type Contact struct {
 	Name        string             `json:"name" bson:"name"`        // 联系方式名称
 	Url         string             `json:"url" bson:"url"`          // 跳转 url (可选)
 	Image       string             `json:"image" bson:"image"`      // 二维码图片 url (可选)
-	Type        int                `json:"type" bson:"type"`        // 展示类型 [0: url, 1: 二维码]
+	Type        int                `json:"type" bson:"type"`        // 展示类型 [0: 未定义, 1: url, 2: 二维码]
 	Weight      int                `json:"weight" bson:"weight"`    // 权重
 	GmtCreate   time.Time          `json:"-" bson:"gmt_create"`     // 记录创建时间
 	GmtModified time.Time          `json:"-" bson:"gmt_modified"`   // 记录最新修改时间
@@ -55,6 +55,6 @@ type SiteEntrance struct {
 	Name        string             `json:"name" bson:"name"`        // 站点名称
 	Url         string             `json:"url" bson:"url"`          // 站点 url
 	Weight      int                `json:"weight" bson:"weight"`    // 权重
-	GmtCreate   string             `json:"-" bson:"gmt_create"`     // 记录创建时间
-	GmtModified string             `json:"-" bson:"gmt_modified"`   // 记录最新修改时间
+	GmtCreate   time.Time          `json:"-" bson:"gmt_create"`     // 记录创建时间
+	GmtModified time.Time          `json:"-" bson:"gmt_modified"`   // 记录最新修改时间
 }

@@ -13,6 +13,24 @@ const router = createRouter({
                 title: 'Anonymous Public Space'
             }
         },
+        // 后台登录
+        {
+            path: '/login',
+            name: 'login to manage',
+            component: () => import('../views/public/Login.vue'),
+            meta: {
+                title: 'Anonymous Public Space - Login to manage'
+            }
+        },
+        // 后台管理
+        {
+            path: '/manage',
+            name: 'manage console',
+            component: () => import('../views/manage/Manage.vue'),
+            meta: {
+                title: 'Anonymous Public Space - Manage console'
+            }
+        },
         // 开发 debug 组件映射
         {
             path: '/dev',
